@@ -36,4 +36,13 @@ class ExpenseUpApi(APIView):
             return Response({"Message":"Message Updated successfully"})
         else:
             return Response(serialiser.errors)
+    def put(self,request,id):
+        item=Expanse.objects.get(id=id)
+        serializer=ExpanseSerializer(item,data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+            
+        else:
+            return Response(serializer.error_messages)
 
