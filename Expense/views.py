@@ -4,6 +4,7 @@ from .models import Expanse
 from .serializers import ExpanseSerializer
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework  import  status
 # Create your views here.
 
 class ExpenseApi(APIView):
@@ -45,4 +46,13 @@ class ExpenseUpApi(APIView):
             
         else:
             return Response(serializer.error_messages)
+        
+    def delete(self ,request,id):
+        item=Expanse.objects.get(id=id)
+        if  item:
+            item.delete()
+            return Response( status=status.HTTP_200_OK)
+        else:
+            return Response( status=status.HTTP_404_NOT_FOUND)
+        
 
