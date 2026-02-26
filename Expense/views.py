@@ -2,7 +2,7 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework  import  status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated ,AllowAny
 from django.contrib.auth.models import User
 from .permissions import isWoner
 from django.contrib.auth import authenticate
@@ -66,6 +66,7 @@ class ExpenseUpApi(APIView):
         
 
 class LoginView(APIView):
+    permission_classes=[AllowAny]
     def post(self, request):
         username = request.data.get("username")
         password = request.data.get("password")
@@ -82,4 +83,16 @@ class LoginView(APIView):
         return Response({"error": "Invalid credentials"}, status=400)
 
 
-
+# LogOut View
+class LogoutView(APIView):
+    permission_classes=[IsAuthenticated]
+    def post(self,request):
+        try:
+            refresh_Token=request.data.get('refresh')
+            if refresh_Token is None:
+                return Response("please provide the refresh Token")
+            token=RefreshToken(refresh_Token)
+            token.blacklist()
+            return Response( "Logout Successfully ")
+        except  Exception:
+            return Response("Invalid refresh Token")
