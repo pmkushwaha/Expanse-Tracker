@@ -12,10 +12,10 @@ from .serializers import ExpanseSerializer
 from django.shortcuts import get_object_or_404
 # Create your views here.
 # test view for frontend
-class TestView(APIView):
-    permission_classes=[AllowAny]
-    def get (self, request):
-        return Response ({"message": " Hello from the DRF backend "})
+class UserView(APIView):
+    permission_classes=[IsAuthenticated]
+    def get(self, request):
+        return Response( request.user.username)
     
 class ExpenseApi(APIView):
     permission_classes = [IsAuthenticated]
