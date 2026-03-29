@@ -7,7 +7,8 @@ function Login() {
  
   const [username,setUsername]=useState("");
   const [password,setPassword]=useState("");
- const navigate=useNavigate();
+  const navigate=useNavigate();
+
  const handleLogin = async (e) => {
     e.preventDefault();
 
@@ -19,11 +20,13 @@ function Login() {
       console.log(response.data);
 
       // Save tokens
-      localStorage.setItem("access", response.data.refresh.access_token);
+      localStorage.setItem("access", response.data.access);
       localStorage.setItem("refresh", response.data.refresh);
 
+    console.log("Stored token:", localStorage.getItem("access")); // 👈 check
       alert("Login successful ✅");
       navigate('/Home');
+     
     } catch (error) {
       console.error(error);
       alert("Login failed ❌");

@@ -14,11 +14,15 @@ from django.shortcuts import get_object_or_404
 # test view for frontend
 class UserView(APIView):
     permission_classes=[IsAuthenticated]
+    # permission_classes=[AllowAny]
     def get(self, request):
-        return Response( request.user.username)
+        return Response({
+        "username": request.user.username
+        })
     
 class ExpenseApi(APIView):
     permission_classes = [IsAuthenticated]
+   
     def get(self,request):
         
         data = Expanse.objects.filter(user=request.user)
@@ -81,8 +85,9 @@ class LoginView(APIView):
         if user is not None:
             refresh = RefreshToken.for_user(user)
             return Response({
-                "refresh": str(refresh),
+                
                 "access": str(refresh.access_token),
+                "refresh": str(refresh)
             })
 
         return Response({"error": "Invalid credentials"}, status=400)

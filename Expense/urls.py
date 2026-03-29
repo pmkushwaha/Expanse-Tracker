@@ -9,5 +9,5 @@ urlpatterns = [
  path('expense/<int:id>/',ExpenseUpApi.as_view(),name='ExpenseUpApi'),
  path('login/',LoginView.as_view(),name='LoginView'),
  path('logout/',LogoutView.as_view(),name="LogoutView"),
- path('user/',UserView.as_view(),name="TestView"),
+ path('user/',UserView.as_view(),name="UserView"),
             ]
