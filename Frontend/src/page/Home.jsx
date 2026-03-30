@@ -1,6 +1,7 @@
  import { useEffect, useState } from "react";
 import API from "../services/api";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../components/Navbar";
 
 function Home() {
   const [username, setUsername] = useState("");
@@ -32,7 +33,9 @@ const navigate = useNavigate();
 
 
   return (
+
     <div>
+          <Navbar></Navbar>
       <h1>Welcome {username} 👋</h1>
 
       <button onClick={handleLogout}>
