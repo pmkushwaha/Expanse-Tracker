@@ -36,29 +36,34 @@ function Login() {
    return (
     <div>
        <Navbar></Navbar>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
+      <h2 className='mt-5'>Login</h2>
+      <br />
+      <form onSubmit={handleLogin} >
+         
+         <div class="form-group">
+    
+    <input    class="form-control" 
+     type="text"
           placeholder="Username"
           name="username"
-          
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-        />
-        <br />
-
-        <input
-          type="password"
+    />
+     </div>
+     <br />
+  <div class="form-group">
+  
+    <input   class="form-control"   
+    
+    type="password"
           placeholder="Password"
           name="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br />
-
-        <button type="submit">Login</button>
-      </form>
+          onChange={(e) => setPassword(e.target.value)}/>
+  </div>
+  <br></br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+               </form>
     </div>
   );
 }

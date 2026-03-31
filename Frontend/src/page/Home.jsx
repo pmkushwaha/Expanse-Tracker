@@ -19,16 +19,16 @@ function Home() {
   }, []);
 
   // for logout
-const navigate = useNavigate();
+// const navigate = useNavigate();
 
-  const handleLogout = () => {
-    // remove tokens
-    localStorage.removeItem("access");
-    localStorage.removeItem("refresh");
+//   const handleLogout = () => {
+//     // remove tokens
+//     localStorage.removeItem("access");
+//     localStorage.removeItem("refresh");
 
-    // redirect to login page
-    navigate("/");
-  };
+//     // redirect to login page
+//     navigate("/");
+//   };
 
 
 
@@ -36,11 +36,17 @@ const navigate = useNavigate();
 
     <div>
           <Navbar></Navbar>
-      <h1>Welcome {username} 👋</h1>
+   
 
-      <button onClick={handleLogout}>
+      {/* <button onClick={handleLogout}>
         Logout
-      </button>
+      </button> */}
+      <h2>Welcome {username} 👋</h2>
+<p>
+  This is a full-stack application built using React and Django REST Framework.
+  It features secure JWT authentication, allowing users to log in, access protected routes,
+  and interact with backend APIs efficiently.
+</p>
     </div>
   );
 }
